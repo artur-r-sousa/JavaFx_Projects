@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ViewController">
+   <children>
+      <TextField fx:id="txtFieldSearch" layoutX="29.0" layoutY="69.0" />
+      <Button fx:id="btnSearch" layoutX="199.0" layoutY="69.0" mnemonicParsing="false" onAction="#onSearchAction" text="search" />
+      <Label layoutX="29.0" layoutY="36.0" prefHeight="17.0" prefWidth="105.0" text="FIND USER" />
+      <TextField fx:id="txtFieldId" editable="false" layoutX="29.0" layoutY="148.0" prefHeight="25.0" prefWidth="353.0" />
+      <TextField fx:id="txtFieldCountry" layoutX="29.0" layoutY="430.0" prefHeight="25.0" prefWidth="353.0" />
+      <TextField fx:id="txtFieldEmail" layoutX="29.0" layoutY="375.0" prefHeight="25.0" prefWidth="353.0" />
+      <TextField fx:id="txtFieldCCV" editable="false" layoutX="29.0" layoutY="324.0" prefHeight="25.0" prefWidth="353.0" />
+      <TextField fx:id="txtFieldAccBal" editable="false" layoutX="29.0" layoutY="266.0" prefHeight="25.0" prefWidth="353.0" />
+      <TextField fx:id="txtFieldName" layoutX="29.0" layoutY="208.0" prefHeight="25.0" prefWidth="353.0" />
+      <TextField fx:id="txtFieldCreatedIn" editable="false" layoutX="29.0" layoutY="482.0" prefHeight="25.0" prefWidth="353.0" />
+      <Button fx:id="btnUpdate" layoutX="29.0" layoutY="531.0" mnemonicParsing="false" onAction="#onUpdateAction" prefHeight="49.0" prefWidth="128.0" text="Update Info" />
+      <Button fx:id="btnDelete" layoutX="224.0" layoutY="531.0" mnemonicParsing="false" onAction="#onDeleteAction" prefHeight="49.0" prefWidth="128.0" text="Delete User" />
+      <Separator layoutX="397.0" layoutY="45.0" orientation="VERTICAL" prefHeight="535.0" prefWidth="0.0" />
+      <Label layoutX="31.0" layoutY="131.0" text="Id" />
+      <Label layoutX="30.0" layoutY="191.0" text="Name" />
+      <Label layoutX="30.0" layoutY="249.0" text="Account Balance" />
+      <Label layoutX="28.0" layoutY="304.0" prefHeight="17.0" prefWidth="50.0" text="CCV" />
+      <Label layoutX="29.0" layoutY="465.0" text="Client since:" />
+      <Label layoutX="31.0" layoutY="407.0" text="Country" />
+      <Label layoutX="31.0" layoutY="358.0" text="Email" />
+      <Separator layoutX="29.0" layoutY="179.0" prefHeight="3.0" prefWidth="353.0" />
+      <Separator layoutX="29.0" layoutY="239.0" prefHeight="3.0" prefWidth="353.0" />
+      <Separator layoutX="29.0" layoutY="299.0" prefHeight="1.0" prefWidth="350.0" />
+      <Separator layoutX="29.0" layoutY="357.0" prefHeight="1.0" prefWidth="350.0" />
+      <Separator layoutX="29.0" layoutY="406.0" prefHeight="1.0" prefWidth="350.0" />
+      <Separator layoutX="29.0" layoutY="464.0" prefHeight="1.0" prefWidth="350.0" />
+      <Label fx:id="lblWelcome" layoutX="424.0" layoutY="73.0" />
+      <TextField fx:id="txtFieldWithdraw" layoutX="559.0" layoutY="208.0" opacity="0.0" />
+      <Label fx:id="lblResult" layoutX="559.0" layoutY="283.0" />
+      <Button fx:id="btnconfirmDepOrWit" layoutX="604.0" layoutY="254.0" mnemonicParsing="false" onAction="#onConfirmDepOrWitAction" opacity="0.0" text="Confirm" />
+      <TextField fx:id="txtFieldDeposit" layoutX="559.0" layoutY="148.0" opacity="0.0" />
+      <Label fx:id="lblDeposit" layoutX="424.0" layoutY="152.0" opacity="0.0" text="Deposit" />
+      <Label fx:id="lblWithdraw" layoutX="424.0" layoutY="212.0" opacity="0.0" text="Withdraw" />
+      <Label fx:id="lblDepOrWitConfirm" layoutX="534.0" layoutY="114.0" prefHeight="17.0" prefWidth="213.0" />
+   </children>
+</AnchorPane>
