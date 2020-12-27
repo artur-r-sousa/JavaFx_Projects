@@ -15,7 +15,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) {
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("/gui/View.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("/gui/EntryView.fxml"));
 			mainScene = new Scene(parent);
 			stage.setScene(mainScene);
 			stage.setTitle("Bank");
