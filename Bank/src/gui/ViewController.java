@@ -78,26 +78,65 @@ public class ViewController implements Initializable{
 	}
 	
 	@FXML
+	private void clearScreen() {
+		txtFieldId.setText("");		
+		txtFieldName.setText("");
+		txtFieldAccBal.setText("");	
+		txtFieldEmail.setText("");		
+		txtFieldCCV.setText("");
+		txtFieldCountry.setText("");
+		txtFieldCreatedIn.setText("");
+	}
+	
+	@FXML
 	private void onDeleteAction() { 
 		try {
 			UserDao userDao = DaoFactory.createUserDao();
-			userDao.deleteById(Integer.parseInt(txtFieldSearch.getText()));
-			Alerts.showAlert("Success", null, "User removed from DB", AlertType.INFORMATION);
-		} catch(NullPointerException e) {
-			Alerts.showAlert("Information", null, "User not in The DB", AlertType.INFORMATION);
+			if(userDao.findById(Integer.parseInt(txtFieldSearch.getText())).getId() != null) {
+				userDao.deleteById(Integer.parseInt(txtFieldSearch.getText()));
+				Alerts.showAlert("Success", null, "User removed from DB", AlertType.INFORMATION);
+				clearScreen();
+				btnconfirmDepOrWit.setOpacity(0);
+				lblWithdraw.setOpacity(0);
+				lblDeposit.setOpacity(0);
+				txtFieldWithdraw.setOpacity(0);
+				txtFieldDeposit.setOpacity(0);
+				lblWelcome.setOpacity(0);
+			} else {
+				Alerts.showAlert("Information", null, "Please Enter a valid id", AlertType.INFORMATION);
+			}
+			
+		} catch(NullPointerException e0) {
+			Alerts.showAlert("Information", null, e0.getMessage(), AlertType.INFORMATION);
+		} catch (NumberFormatException e1) {
+			Alerts.showAlert("Information", null, "Please Enter a valid id", AlertType.INFORMATION);
+
 		}
 		
 	}
 	
 	@FXML
 	private void onUpdateAction() {
-		UserDao userDao = DaoFactory.createUserDao();
-		User obj = userDao.findById(Integer.parseInt(txtFieldSearch.getText()));
-		obj.setName(txtFieldName.getText());
-		obj.setEmail(txtFieldEmail.getText());
-		obj.setCountry(txtFieldCountry.getText());		
-		Alerts.showAlert("Confirmation", null, "Please Confirm Alteration", AlertType.CONFIRMATION);
-		userDao.update(obj);
+		try {
+			UserDao userDao = DaoFactory.createUserDao();
+			if (userDao.findById(Integer.parseInt(txtFieldSearch.getText())).getId() != null) {
+				User obj = userDao.findById(Integer.parseInt(txtFieldSearch.getText()));
+				obj.setName(txtFieldName.getText());
+				obj.setEmail(txtFieldEmail.getText());
+				obj.setCountry(txtFieldCountry.getText());
+				Alerts.showAlert("Confirmation", null, "Please Confirm Alteration", AlertType.CONFIRMATION);
+				userDao.update(obj);
+			} else {
+				Alerts.showAlert("Information", null, "Please Enter a valid id", AlertType.INFORMATION);
+			}
+
+		} catch (NullPointerException e0) {
+			Alerts.showAlert("Information", null, e0.getMessage(), AlertType.INFORMATION);
+		} catch (NumberFormatException e1) {
+			Alerts.showAlert("Information", null, "Please Enter a valid id", AlertType.INFORMATION);
+
+		}
+
 	}
 	
 	@FXML 
@@ -134,8 +173,7 @@ public class ViewController implements Initializable{
 			lblDeposit.setOpacity(1);
 			txtFieldWithdraw.setOpacity(1);
 			txtFieldDeposit.setOpacity(1);
-			
-			
+						
 		} catch (NullPointerException e) {
 			Alerts.showAlert("User not Found", null, "User does not exist on the DB", AlertType.CONFIRMATION);
 			txtFieldId.setText("");
