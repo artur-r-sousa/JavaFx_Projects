@@ -1,22 +1,32 @@
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import gui.util.Alerts;
 import gui.util.Constraints;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.dao.DaoFactory;
 import model.dao.UserDao;
 import model.entities.User;
 
 public class ViewController implements Initializable{
 	
+	@FXML
+	private MenuItem menuItemAbout;
+	@FXML
+	private MenuItem menuItemNewUser;
 	@FXML
 	private Button btnSearch;
 	@FXML
@@ -58,10 +68,25 @@ public class ViewController implements Initializable{
 	private Button btnDelete;
 	
 	@FXML
+	private void onAboutAction()  {
+		loadView("/gui/About.fxml");
+	}
+	
+	@FXML
+	private void onNewUSerAction()  {
+		loadView("/gui/CreateUserView.fxml");
+	}
+	
+	@FXML
 	private void onDeleteAction() { 
-		UserDao userDao = DaoFactory.createUserDao();
-		userDao.deleteById(Integer.parseInt(txtFieldSearch.getText()));
-		Alerts.showAlert("Success", null, "User removed from DB", AlertType.INFORMATION);
+		try {
+			UserDao userDao = DaoFactory.createUserDao();
+			userDao.deleteById(Integer.parseInt(txtFieldSearch.getText()));
+			Alerts.showAlert("Success", null, "User removed from DB", AlertType.INFORMATION);
+		} catch(NullPointerException e) {
+			Alerts.showAlert("Information", null, "User not in The DB", AlertType.INFORMATION);
+		}
+		
 	}
 	
 	@FXML
@@ -109,6 +134,8 @@ public class ViewController implements Initializable{
 			lblDeposit.setOpacity(1);
 			txtFieldWithdraw.setOpacity(1);
 			txtFieldDeposit.setOpacity(1);
+			
+			
 		} catch (NullPointerException e) {
 			Alerts.showAlert("User not Found", null, "User does not exist on the DB", AlertType.CONFIRMATION);
 			txtFieldId.setText("");
@@ -124,6 +151,19 @@ public class ViewController implements Initializable{
 
 	}
 	
-	
+	private void loadView(String absoluteName) {
+		
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			Parent root1 = (Parent) loader.load();
+			Stage stage = new Stage();
+			stage.setScene(new Scene(root1));
+			stage.show();		
+			
+		} catch (IOException e) {
+			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
+			
+		}
+	}
 	
 }
