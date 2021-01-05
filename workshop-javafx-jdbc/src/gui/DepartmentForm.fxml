@@ -30,8 +30,8 @@
             <Label fx:id="lblErrorName" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Button fx:id="btnSaveButton" mnemonicParsing="false" text="Save" />
-                  <Button fx:id="btnCancelButton" mnemonicParsing="false" text="Cancel" />
+                  <Button fx:id="btnSaveButton" mnemonicParsing="false" onAction="#onBtnSaveAction" text="Save" />
+                  <Button fx:id="btnCancelButton" mnemonicParsing="false" onAction="#onBtnCancelAction" text="Cancel" />
                </children>
             </HBox>
          </children>
