@@ -29,6 +29,14 @@ public class Utils {
 		}
 	}
 	
+	public static Double tryParseToDouble(String str) {
+		try {
+			return Double.parseDouble(str);
+		}catch(NumberFormatException e) {
+			return null;
+		}
+	}
+	
 	public static <T> void formatTableColumnDate(TableColumn<T, Date> tableColumn, String format) {
 		tableColumn.setCellFactory(column -> {
 			TableCell<T, Date> cell = new TableCell<T, Date>() {
@@ -60,7 +68,7 @@ public class Utils {
 						setText(null);
 					} else {
 						Locale.setDefault(Locale.US);
-						setText(String.format("%." + decimalPlaces + "f", item));
+						setText(String.format("%."+decimalPlaces+"f", item));
 					}
 				}
 			};

@@ -109,31 +109,28 @@ public class SellerListController implements Initializable, DataChangeListener{
 	
 	
 	private void createDialogForm(Seller obj, String absoluteName, Stage parentStage) {
-
 		try {
-			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
-			
+
 			SellerFormController controller = loader.getController();
 			controller.setSeller(obj);
 			controller.setServices(new SellerService(), new DepartmentService());
 			controller.loadAssociatedObjects();
 			controller.subscribeDataChangeListener(this);
 			controller.updateFormData();
-			
+
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Enter Seller Data");
+			dialogStage.setTitle("Enter Seller data");
 			dialogStage.setScene(new Scene(pane));
 			dialogStage.setResizable(false);
 			dialogStage.initOwner(parentStage);
-			//this sets so that you can only access the back windows when this is closed
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.showAndWait();
-			
-		}catch(IOException e) {
+		} catch (IOException e) {
+			e.printStackTrace();
 			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
-		}		
+		}
 	}
 	
 	
